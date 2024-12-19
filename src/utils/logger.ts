@@ -1,3 +1,3 @@
-import buyan from 'bunyan'
+import buyan from "bunyan";
 
-export default (logName: string) => buyan.createLogger({name: logName})
+export default (logName: string) => buyan.createLogger({ name: logName });
