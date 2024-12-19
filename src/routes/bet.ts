@@ -29,10 +29,29 @@ routes.get("/", async (req: Request, res: Response) => {
 	await betController.betHistory(req);
 });
 
-routes.put("/odds", async (req: Request, res: Response) => {
-	// get live game data
-	const oddsController = new OddsController();
-	await oddsController.getLiveOdds();
+routes.get("/odds", async (req: Request, res: Response) => {
+	try {
+		const oddsController = new OddsController();
+		const liveOdds = await oddsController.getLiveOdds();
+
+		return respondWithData(
+			{
+				data: liveOdds,
+				message: "success",
+				statusCode: 200,
+			},
+			res,
+		);
+	} catch (error) {
+		return respondWithData(
+			{
+				data: null,
+				message: "Could not calculate odds",
+				statusCode: 500,
+			},
+			res,
+		);
+	}
 });
 
 routes.post("/odds/calculate", async (req: Request, res: Response) => {

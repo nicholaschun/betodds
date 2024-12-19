@@ -1,9 +1,9 @@
 import {
 	type Consumer,
 	Kafka,
-	type Producer,
-	type ProducerRecord,
 } from "kafkajs";
+import { TOPICS as allTopics, consumerTopics } from "../../utils/kafka-topics";
+
 
 export class KafkaConsumer {
 	private consumer: Consumer;
@@ -19,7 +19,6 @@ export class KafkaConsumer {
 
 	public async consumeMessage<T>(
 		topic: string,
-		message: T,
 		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		callback: any,
 	): Promise<void> {
@@ -27,11 +26,8 @@ export class KafkaConsumer {
 			await this.consumer.connect();
 			await this.consumer.subscribe({ topic, fromBeginning: true });
 			await this.consumer.run({
-				eachMessage: async ({ topic, partition, message }) => {
-					const value = message;
-
-					// send to socket.io
-					callback(topic, partition, value);
+				eachMessage: async ({topic, partition, message}) => {
+					callback({ message: message.value?.toString(), topic, partition });         
 				},
 			});
 		} catch (error) {
@@ -41,4 +37,17 @@ export class KafkaConsumer {
 			await this.consumer.disconnect();
 		}
 	}
+
+  public async initializeConsumers(){
+    for (let i = 0; i < consumerTopics.length; i++) {
+      this.consumeMessage(
+        consumerTopics[i].topic,
+        (message: KafkaConsumerMessage) => {
+          consumerTopics[i].consumer(message)
+        },
+      );
+    }
+          
+  }
 }
+

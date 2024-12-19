@@ -1,5 +1,4 @@
 import {
-	type Consumer,
 	Kafka,
 	type Producer,
 	type ProducerRecord,
@@ -17,14 +16,14 @@ export class KafkaProducer {
 		this.producer = kafka.producer();
 	}
 
-	public async sendMessage<T>(topic: string, message: T): Promise<void> {
+	public async sendMessage(topic: string, message: string): Promise<void> {
 		try {
 			await this.producer.connect();
 			const record: ProducerRecord = {
 				topic,
 				messages: [
 					{
-						value: JSON.stringify(message),
+						value: message
 					},
 				],
 			};
@@ -35,7 +34,7 @@ export class KafkaProducer {
 			console.error("Error sending message:", error);
 			throw error;
 		} finally {
-			await this.producer.disconnect();
-		}
+      await this.producer.disconnect();
+  }
 	}
 }

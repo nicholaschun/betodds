@@ -25,3 +25,9 @@ interface ApiResponse<T> {
 	data: T | null | boolean | string | undefined;
 	message: string | null;
 }
+
+interface KafkaConsumerMessage{
+  topic: string
+  partition: string
+  message: string
+}
