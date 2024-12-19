@@ -1,0 +1,25 @@
+<head></head>
+
+<body>
+  <script type="text/javascript" src="https://cdn.socket.io/4.6.1/socket.io.js"></script>
+  <script type="text/javascript">
+    const user = '7eb00d95-9462-482b-afcd-60901fe374cb'
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    const is = io('http://localhost:4000/bet-sessions', {
+      auth: {
+        token: user,
+        room: 'webClient',
+      },
+    });
+
+    is.on('connect', () => {
+      console.log(`${user} user connected`);
+    });
+
+    is.on('health_pulse', (data) => {
+      console.log('health_pulse', data);
+    });
+  </script>
+</body>

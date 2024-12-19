@@ -1,12 +1,20 @@
 import dotenv from "dotenv";
 import app from "./app";
 import config from "./config/index";
+import { Socket } from "./services/socket";
+import { createServer } from 'node:http';
+
+export const httpServer = createServer(app);
+
 
 dotenv.config();
 const { port, host } = config;
 
-const server = app.listen(port, () => {
+const server = httpServer.listen(port, () => {
 	console.log(`Running on ${host}:${port}`);
 });
+
+export const socket = new Socket(httpServer);
+socket.createNamespace('bet-sessions');
 
 export default server;
