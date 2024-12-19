@@ -13,8 +13,8 @@
     "dev": "nodemon src/server.ts",
     "lint": "npx biome lint ./src",
     "lint-fix": "npx biome lint --write ./src",
-    "lint-check": "npx biome check ./src",
-    "test": "npx biome check",
+    "lint-check": "npx biome check --fix --unsafe ./src",
+    "test": "yarn lint-check",
     "prepare": "husky"
   },
   "dependencies": {
