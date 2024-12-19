@@ -35,7 +35,7 @@ export class BetController {
 				amount: req.body.amount,
 			};
 			const simulatedBet = simulateBetPlacement(payload);
-      console.log('---ssiii', simulatedBet)
+			console.log("---ssiii", simulatedBet);
 			return simulatedBet;
 		} catch (error) {
 			log.error("could not place bet", error);

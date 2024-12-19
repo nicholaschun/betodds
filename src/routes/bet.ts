@@ -19,7 +19,6 @@ routes.get("/health", async (req: Request, res: Response) => {
 	res.end("Api is up and running");
 });
 
-
 /**Place bet */
 routes.post("/", async (req: Request, res: Response) => {
 	try {
