@@ -19,15 +19,56 @@ routes.get("/health", async (req: Request, res: Response) => {
 	res.end("Api is up and running");
 });
 
+
+/**Place bet */
 routes.post("/", async (req: Request, res: Response) => {
-	const betController = new BetController();
-	await betController.placeBet(req);
+	try {
+		const betController = new BetController();
+		const bet = await betController.placeBet(req);
+		return respondWithData(
+			{
+				data: bet,
+				message: "success",
+				statusCode: 200,
+			},
+			res,
+		);
+	} catch (error) {
+		return respondWithData(
+			{
+				data: null,
+				message: "Could not place bet",
+				statusCode: 500,
+			},
+			res,
+		);
+	}
 });
 
+/**user bet history  */
 routes.get("/", async (req: Request, res: Response) => {
-	const betController = new BetController();
-	const userId = "U1"; //:Todo should come from user token
-	await betController.betHistory(userId);
+	try {
+		const betController = new BetController();
+		const userId = "U1"; //:Todo should come from user token
+		const betHistory = await betController.betHistory(userId);
+		return respondWithData(
+			{
+				data: betHistory,
+				message: "success",
+				statusCode: 200,
+			},
+			res,
+		);
+	} catch (error) {
+		return respondWithData(
+			{
+				data: null,
+				message: "Could not place bet",
+				statusCode: 500,
+			},
+			res,
+		);
+	}
 });
 
 routes.get("/odds", async (req: Request, res: Response) => {
