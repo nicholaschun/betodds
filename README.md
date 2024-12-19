@@ -102,9 +102,8 @@ docker-compose down
 - `POST /v1/api/auth/signup`: User registration
 
 ### Betting
-- `GET /v1/api/odds/live`: Get live odds
-- `POST /v1/api/bets`: Place a bet
-- `GET /v1/api/bets/history`: Get betting history
+- `GET /v1/api/bet`: Get history
+- `POST /v1/api/bet`: Place a bet
 
 
 
@@ -113,11 +112,6 @@ docker-compose down
 Run the test suite:
 ```bash
 yarn test
-```
-
-For test coverage:
-```bash
-yarn test:coverage
 ```
 
 ## Deployment
