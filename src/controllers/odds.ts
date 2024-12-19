@@ -31,7 +31,6 @@ export class OddsController {
 		try {
 			//get live odds
 			const liveOdds = liveGameData;
-
 			const liveOddsproducer = new KafkaProducer(brokers, clientId);
 			await liveOddsproducer.sendMessage(
 				UPDATE_LIVE_ODDS,

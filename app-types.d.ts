@@ -26,8 +26,33 @@ interface ApiResponse<T> {
 	message: string | null;
 }
 
-interface KafkaConsumerMessage{
-  topic: string
-  partition: string
-  message: string
+interface KafkaConsumerMessage {
+	topic: string;
+	partition: string;
+	message: string;
 }
+
+interface UserBet {
+	id: string;
+	userId: string;
+	gameId: string;
+	betType: string;
+	pick: string;
+	amount: number;
+	odds: number;
+}
+
+interface PlaceBet {
+	userId: string;
+	gameId: string;
+	betType: string;
+	pick: string;
+	amount: number;
+}
+
+interface PlaceBetResponse extends PlaceBet {
+	odds: number;
+	id: string;
+}
+
+type NullablePlaceBetResponse = PlaceBetResponse | null;

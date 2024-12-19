@@ -26,7 +26,8 @@ routes.post("/", async (req: Request, res: Response) => {
 
 routes.get("/", async (req: Request, res: Response) => {
 	const betController = new BetController();
-	await betController.betHistory(req);
+	const userId = "U1"; //:Todo should come from user token
+	await betController.betHistory(userId);
 });
 
 routes.get("/odds", async (req: Request, res: Response) => {
@@ -55,7 +56,6 @@ routes.get("/odds", async (req: Request, res: Response) => {
 });
 
 routes.post("/odds/calculate", async (req: Request, res: Response) => {
-	// calculate odds
 	try {
 		const oddsController = new OddsController();
 		const oddRes = await oddsController.calculateOdds(req);

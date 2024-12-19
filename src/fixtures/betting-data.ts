@@ -95,14 +95,13 @@ function generateLiveUpdate(gameId: string): any {
 }
 
 // Function to simulate bet placement
-function simulateBetPlacement(
-	userId: string,
-	gameId: string,
-	betType: string,
-	pick: string,
-	amount: number,
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-): any {
+function simulateBetPlacement({
+	userId,
+	gameId,
+	betType,
+	pick,
+	amount,
+}: PlaceBet): NullablePlaceBetResponse {
 	const user = users.find((u) => u.id === userId);
 	if (!user || user.balance < amount) return null;
 
@@ -129,7 +128,13 @@ function simulateBetPlacement(
 console.log("Live game update:", generateLiveUpdate("G1"));
 console.log(
 	"New bet placed:",
-	simulateBetPlacement("U1", "G2", "winner", "home", 25),
+	simulateBetPlacement({
+		userId: "U1",
+		gameId: "G2",
+		betType: "winner",
+		pick: "home",
+		amount: 25,
+	}),
 );
 
 // Export the data and functions for use in the main application
