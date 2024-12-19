@@ -8,11 +8,11 @@ const config = {
 	baseUrl: process.env.BASE_URL,
 	socketHandshake: process.env.SOCKET_HANDSHAKE,
 	kafka: {
-    odds: {
-      brokers: ["kafka:29092"],
-		  clientId: "q1Sh-9_ISia_zwGINzRvyQ",
-      groupId: "oddGroup"
-    },
+		odds: {
+			brokers: ["kafka:29092"],
+			clientId: "q1Sh-9_ISia_zwGINzRvyQ",
+			groupId: "oddGroup",
+		},
 	},
 };
 

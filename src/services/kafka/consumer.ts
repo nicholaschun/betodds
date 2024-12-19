@@ -1,9 +1,5 @@
-import {
-	type Consumer,
-	Kafka,
-} from "kafkajs";
+import { type Consumer, Kafka } from "kafkajs";
 import { TOPICS as allTopics, consumerTopics } from "../../utils/kafka-topics";
-
 
 export class KafkaConsumer {
 	private consumer: Consumer;
@@ -26,8 +22,8 @@ export class KafkaConsumer {
 			await this.consumer.connect();
 			await this.consumer.subscribe({ topic, fromBeginning: true });
 			await this.consumer.run({
-				eachMessage: async ({topic, partition, message}) => {
-					callback({ message: message.value?.toString(), topic, partition });         
+				eachMessage: async ({ topic, partition, message }) => {
+					callback({ message: message.value?.toString(), topic, partition });
 				},
 			});
 		} catch (error) {
@@ -38,16 +34,14 @@ export class KafkaConsumer {
 		}
 	}
 
-  public async initializeConsumers(){
-    for (let i = 0; i < consumerTopics.length; i++) {
-      this.consumeMessage(
-        consumerTopics[i].topic,
-        (message: KafkaConsumerMessage) => {
-          consumerTopics[i].consumer(message)
-        },
-      );
-    }
-          
-  }
+	public async initializeConsumers() {
+		for (let i = 0; i < consumerTopics.length; i++) {
+			this.consumeMessage(
+				consumerTopics[i].topic,
+				(message: KafkaConsumerMessage) => {
+					consumerTopics[i].consumer(message);
+				},
+			);
+		}
+	}
 }
-

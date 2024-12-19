@@ -1,8 +1,4 @@
-import {
-	Kafka,
-	type Producer,
-	type ProducerRecord,
-} from "kafkajs";
+import { Kafka, type Producer, type ProducerRecord } from "kafkajs";
 
 export class KafkaProducer {
 	private producer: Producer;
@@ -23,7 +19,7 @@ export class KafkaProducer {
 				topic,
 				messages: [
 					{
-						value: message
+						value: message,
 					},
 				],
 			};
@@ -34,7 +30,7 @@ export class KafkaProducer {
 			console.error("Error sending message:", error);
 			throw error;
 		} finally {
-      await this.producer.disconnect();
-  }
+			await this.producer.disconnect();
+		}
 	}
 }
