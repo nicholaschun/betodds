@@ -1,7 +1,7 @@
 import express, { type Router, type Response, type Request } from "express";
-import { socket } from "../server";
-import { OddsController } from "../controllers/odds";
 import { BetController } from "../controllers/bet";
+import { OddsController } from "../controllers/odds";
+import { socket } from "../server";
 import respondWithData from "../utils/respond-with-data";
 const routes: Router = express.Router();
 

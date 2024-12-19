@@ -101,7 +101,7 @@ function simulateBetPlacement(
 	betType: string,
 	pick: string,
 	amount: number,
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 ): any {
 	const user = users.find((u) => u.id === userId);
 	if (!user || user.balance < amount) return null;

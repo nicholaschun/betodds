@@ -1,1 +1,1 @@
-export const UPDATE_LIVE_ODDS = 'UpdateLiveOdds'
+export const UPDATE_LIVE_ODDS = "UpdateLiveOdds";

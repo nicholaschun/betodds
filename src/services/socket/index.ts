@@ -1,6 +1,6 @@
-import { type Namespace, Server, type Socket as IOSocket } from "socket.io";
-import config from "../../config";
 import type { Server as HttpServer } from "node:http";
+import { type Socket as IOSocket, type Namespace, Server } from "socket.io";
+import config from "../../config";
 
 export class Socket {
 	io: Server;

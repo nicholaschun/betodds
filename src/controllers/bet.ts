@@ -1,9 +1,9 @@
 import express, { type Router, type Response, type Request } from "express";
 
-import { KafkaProducer } from "../services/kafka/producer";
 import config from "../config";
-import { UPDATE_LIVE_ODDS } from "../utils/kafka-topics";
 import { bets } from "../fixtures/betting-data";
+import { KafkaProducer } from "../services/kafka/producer";
+import { UPDATE_LIVE_ODDS } from "../utils/kafka-topics";
 
 export class BetController {
 	public async placeBet(

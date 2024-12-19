@@ -2,8 +2,8 @@ import express, { type Router } from "express";
 import swaggerUI from "swagger-ui-express";
 import config from "../config";
 import swaggerSpec from "../utils/js-doc";
+import auth from "./auth";
 import bet from "./bet";
-import auth from "./auth"
 
 const { baseUrl } = config;
 const router: Router = express.Router();

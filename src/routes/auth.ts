@@ -3,7 +3,6 @@ import { AuthController } from "../controllers/auth";
 import respondWithData from "../utils/respond-with-data";
 const routes: Router = express.Router();
 
-
 routes.post("/login", async (req: Request, res: Response) => {
 	try {
 		const authController = new AuthController();

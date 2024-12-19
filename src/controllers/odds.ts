@@ -1,8 +1,8 @@
 import type { Request } from "express";
-import { KafkaProducer } from "../services/kafka/producer";
 import config from "../config";
+import { generateLiveUpdate, liveGameData } from "../fixtures/betting-data";
+import { KafkaProducer } from "../services/kafka/producer";
 import { UPDATE_LIVE_ODDS } from "../utils/kafka-topics";
-import { liveGameData, generateLiveUpdate  } from "../fixtures/betting-data";
 
 export class OddsController {
 	public async getLiveOdds(): Promise<boolean> {
@@ -23,11 +23,10 @@ export class OddsController {
 		}
 	}
 
-  public async calculateOdds(req: Request): Promise<CalculateOddResponse> {
+	public async calculateOdds(req: Request): Promise<CalculateOddResponse> {
 		try {
-
-      const odds = generateLiveUpdate(req.body.gameId)
-      // return odds
+			const odds = generateLiveUpdate(req.body.gameId);
+			// return odds
 
 			const clientId = config.kafka.clientId;
 			const brokers = config.kafka.brokers;
@@ -38,12 +37,11 @@ export class OddsController {
 				UPDATE_LIVE_ODDS,
 				liveGameData,
 			);
-      console.log('---producerRes', producerRes)
+			console.log("---producerRes", producerRes);
 			return odds;
 		} catch (error) {
 			console.log("---error", error);
 			throw error;
 		}
 	}
-
 }
