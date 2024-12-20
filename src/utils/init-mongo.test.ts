@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import connectDB from "./init-mongo";
 import config from "../config";
+import connectDB from "./init-mongo";
 import logger from "./logger";
 
 jest.mock("mongoose");

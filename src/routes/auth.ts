@@ -27,7 +27,6 @@ routes.post("/login", async (req: Request, res: Response) => {
 	}
 });
 
-
 routes.post("/signup", async (req: Request, res: Response) => {
 	try {
 		const authController = new AuthController();
