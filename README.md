@@ -50,40 +50,8 @@ betodds/
 - Bet Fraud Analysis
 - Clean up and optimization
 
-## Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/betodds.git
-cd betodds
-```
-
-2. Install dependencies:
-```bash
-yarn install
-```
-
-3. Set up environment variables:
-```bash
-cp .env.example .env
-```
-
-4. Configure your environment variables in `.env`:
-```env
-PORT=4000
-ENV=development
-```
-
-## Development
-
-Start the development server:
-```bash
-yarn dev
-```
-
-The server will start on `http://localhost:4000` with hot reloading enabled.
-
 ## Docker Setup
+The server will start on `http://localhost:4000` with hot reloading enabled.
 
 1. Build and start the containers:
 ```bash
@@ -114,8 +82,6 @@ docker-compose down
 - `GET /v1/api/bet`: Get history
 - `POST /v1/api/bet`: Place a bet
 
-
-
 ## Testing
 
 Run the test suite:
@@ -125,15 +91,6 @@ yarn test
 
 ## Deployment
 
-1. Build the application:
-```bash
-yarn build
-```
-
-2. Start the production server:
-```bash
-yarn start
-```
 
 ## Built With
 
