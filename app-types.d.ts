@@ -13,11 +13,16 @@ interface LoginResponse {
 	};
 }
 
+
+
+interface ControllerResponse<T> {
+	data: T | string;
+	status: number;
+}
+
 interface SignupResponse {
-	user: {
-		id: string;
-		email: string;
-	};
+	id: string;
+	email: string;
 }
 
 interface ApiResponse<T> {

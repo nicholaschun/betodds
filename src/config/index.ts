@@ -14,6 +14,18 @@ const config = {
 			groupId: "oddGroup",
 		},
 	},
+  db: {
+    mongodb: {
+      connectionString: process.env.MONGO_CONNECTION_STRING
+    }
+  },
+  auth: {
+    jwtIssuer: process.env.JWT_ISSUER || "bet_odds", 
+    jwtAudience: process.env.JWT_AUDIENCE || "bet_odds", 
+    jwtExpiresIn: process.env.JWT_EXPIRES || "48hr", 
+    jwtSubject: process.env.JWT_AUDIENCE || "betodds_aud", 
+    privateKey: process.env.JWT_KEY || ""
+  }
 };
 
 export default config as typeof config;

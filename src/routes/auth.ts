@@ -9,9 +9,9 @@ routes.post("/login", async (req: Request, res: Response) => {
 		const loginRes = await authController.login(req);
 		return respondWithData<LoginResponse>(
 			{
-				data: loginRes,
+				data: loginRes.data,
 				message: "success",
-				statusCode: 200,
+				statusCode: loginRes.status,
 			},
 			res,
 		);
@@ -27,15 +27,16 @@ routes.post("/login", async (req: Request, res: Response) => {
 	}
 });
 
+
 routes.post("/signup", async (req: Request, res: Response) => {
 	try {
 		const authController = new AuthController();
 		const signupRes = await authController.signup(req);
 		return respondWithData<SignupResponse>(
 			{
-				data: signupRes,
+				data: signupRes.data,
 				message: "success",
-				statusCode: 200,
+				statusCode: signupRes.status,
 			},
 			res,
 		);

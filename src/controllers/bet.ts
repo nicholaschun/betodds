@@ -1,9 +1,5 @@
-import express, { type Router, type Response, type Request } from "express";
-
-import config from "../config";
+import type { Request } from "express";
 import { bets, simulateBetPlacement } from "../fixtures/betting-data";
-import { KafkaProducer } from "../services/kafka/producer";
-import { UPDATE_LIVE_ODDS } from "../utils/kafka-topics";
 import logger from "../utils/logger";
 
 const log = logger("BetController");
@@ -35,7 +31,6 @@ export class BetController {
 				amount: req.body.amount,
 			};
 			const simulatedBet = simulateBetPlacement(payload);
-			console.log("---ssiii", simulatedBet);
 			return simulatedBet;
 		} catch (error) {
 			log.error("could not place bet", error);

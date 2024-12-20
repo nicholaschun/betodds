@@ -24,15 +24,32 @@ services:
     networks:
       - betodd_net
 
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    env_file: ./.env
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - betodd_net
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+      - MONGO_INITDB_DATABASE=betodds
   api:
     build: 
       context: .
       dockerfile: Dockerfile
     container_name: betodd-api
+    env_file: ./.env
     ports:
       - "4000:4000"
     depends_on:
       - kafka
+      - mongodb
     environment:
       KAFKA_BROKERS: "localhost:29092"
       RELOAD: true
@@ -41,8 +58,10 @@ services:
       - /app/node_modules
     networks:
       - betodd_net
+  
 
 volumes:
+  dbdata:
   kafka_data:
     driver: local
 
