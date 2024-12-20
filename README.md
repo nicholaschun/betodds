@@ -40,6 +40,15 @@ betodds/
 - Yarn package manager
 - Docker and Docker Compose
 - Kafka
+- MongoDb
+
+## TODO
+- Leaderboard Implementation
+- Cache Implementation
+- Add more test coverage
+- Documentation
+- Bet Fraud Analysis
+- Clean up and optimization
 
 ## Installation
 
